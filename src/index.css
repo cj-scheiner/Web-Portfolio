@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* Design tokens from PLAN.md. Tailwind v4 reads this block and generates
+   utility classes from it, so every value lives in exactly one place. */
+@theme {
+  /* --color-* generates bg-*, text-*, border-* */
+  --color-ink: #0b0d10;
+  --color-surface: #14171c;
+  --color-line: #232830;
+  --color-text: #e8e6e1;
+  --color-muted: #868d97;
+  --color-accent: #93b4ff;
+
+  /* --font-* generates font-display, font-sans, font-mono */
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  /* --text-* generates text-hero, text-h2, text-body, text-label.
+     The double-dash suffixes attach a default line-height, tracking and
+     weight to each size utility. */
+  --text-hero: clamp(3.5rem, 9vw, 8rem);
+  --text-hero--line-height: 0.95;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 500;
+
+  --text-h2: 1.75rem;
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.7;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.08em;
+
+  /* --container-* generates max-w-page */
+  --container-page: 1100px;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.7;
+    /* Light text on a dark background renders too heavy without this. */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Quality floor: every interactive element gets a visible focus ring. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
